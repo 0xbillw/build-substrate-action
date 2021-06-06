@@ -1,0 +1,15 @@
+name: 'Substrate Build'
+description: 'Builds the Substrate blockchain node'
+inputs:
+  toolchain-version:
+    description: 'Version for the WASM toolchain and rustup'
+    required: true
+    default: 'nightly-2021-03-23'
+outputs:
+  binary-path:
+    description: 'The path of the compiled node binary'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.toolchain-version }}
