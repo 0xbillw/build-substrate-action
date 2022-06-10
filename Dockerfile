@@ -1,4 +1,5 @@
-FROM paritytech/ci-linux:production
+#FROM paritytech/ci-linux:production
+FROM ubuntu:latest
 
 COPY entrypoint.sh /entrypoint.sh
 
@@ -10,7 +11,8 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
     libssl-dev \
     pkg-config
 
-RUN curl https://sh.rustup.rs -sSf | sh -s -- -y && \
+RUN curl https://sh.rustup.rs -sSf | sh -s -- -y
+RUN bash -c 'source $HOME/.cargo/env' && \
     export PATH=$PATH:$HOME/.cargo/bin && \
     rustup default stable && \
     rustup toolchain install nightly && \	
